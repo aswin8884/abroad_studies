@@ -1,0 +1,128 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+
+<style>
+  .card-header {
+    background-color: #007bff;
+    color: #fff;
+    border-bottom: 1px solid #e9ecef;
+    padding: 15px;
+  }
+  .card-title {
+    font-weight: bold;
+    margin: 0;
+  }
+  .table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  .table th {
+    background-color: #28a745;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+  }
+  .table td {
+    background-color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+  }
+  .table-hover tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  .btn {
+    margin: 0 2px;
+    transition: background-color 0.3s ease;
+  }
+  .btn-success:hover {
+    background-color: #28a745;
+  }
+  .btn-danger:hover {
+    background-color: #dc3545;
+  }
+  .btn-outline-info:hover {
+    background-color: #17a2b8;
+    color: #fff;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><br><br><br><br>
+        <h4 class="card-title">International Students Requests</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            id="basic-datatables"
+            class="display table table-striped table-hover"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Country</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">University</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Course</th>
+                <th scope="col">Id Proof</th>
+                <th colspan="2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for s in students %}
+              <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.nation }}</td>
+                <td>{{ s.city }}</td>
+                <td>{{ s.address }}</td>
+                <td>{{ s.university }}</td>
+                <td>{{ s.email }}</td>
+                <td>{{ s.contact }}</td>
+                <td>{{ s.course }}</td>
+                <td>
+                  <a href="../static/media/{{ s.id_proof }}">
+                    <button type="button" class="btn btn-outline-info btn-icon-text">Id Proof
+                      <i class="ti-printer btn-icon-append"></i>
+                    </button>
+                  </a>
+                </td>
+
+                {% if s.approvel %}
+                <td>
+                  <button type="button" disabled class="btn btn-info btn-icon-text">Approved</button>
+                </td>
+                {% else %}
+                <td>
+                  <a class="btn btn-success" href="/accept_international_student?id={{ s.id }}">Accept</a>
+                </td>
+                <td>
+                  <a class="btn btn-danger" href="/reject_international_student?id={{ s.id }}">Reject</a>
+                </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{ m }}")</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

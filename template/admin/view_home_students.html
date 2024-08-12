@@ -1,0 +1,75 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+
+<style>
+  .card-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+  }
+  .card-title {
+    font-weight: bold;
+    margin: 0;
+  }
+  .table-head-bg-primary thead th {
+    background-color: #006dda;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+  }
+  .table td {
+    background-color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+  }
+  .table tbody tr:hover {
+    background-color: #e9ecef;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><br><br><br><br>
+        <h4 class="card-title">Home Students</h4>
+      </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-head-bg-primary">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Email</th>
+            <th scope="col">Qualification</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in students %}
+          <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.address }}</td>
+            <td>{{ s.contact }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.qualification }}</td>
+            <td>
+              <a class="btn btn-danger" href="/delete_home_student?id={{ s.id }}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  </div></div>
+  {% if messages %}
+{% for m in messages %}
+<script>alert("{{m}}")</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

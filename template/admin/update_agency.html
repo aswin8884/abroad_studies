@@ -1,0 +1,165 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+
+<style>
+    .container {
+        max-width: 1200px;
+    }
+
+    .card {
+        border-radius: 8px;
+        width: 100%;
+        margin-left: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        border-bottom: 2px solid #007bff;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .form-group label {
+        font-weight: 500;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .btn {
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .row {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-action {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="page-inner">
+        <div class="page-header">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card" style="margin-top: 50px;">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">Update Agency Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="univ-name">Agency name</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="univ-name"
+                                                name="agency"
+                                                value="{{agency.agency}}"
+                                                placeholder="Enter Agency Name"
+                                            />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="univ-name">Location</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                value="{{agency.location}}"
+                                                id="univ-name"
+                                                name="location"
+                                                placeholder="Enter Agency Location"
+                                            />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="univ-name">Link</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="univ-name"
+                                                value="{{agency.link}}"
+                                                name="link"
+                                                placeholder="Enter Agency Link"
+                                            />
+                                        </div>
+    
+                                        <div class="form-group">
+                                            <label for="description">Contact</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="description"
+                                                name="contact"
+                                                value="{{agency.contact}}"
+                                                placeholder="Enter Contact Number"
+                                            />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="requirements">Email</label>
+                                            <input
+                                                type="email"
+                                                class="form-control"
+                                                id="requirements"
+                                                value="{{agency.email}}"
+                                                name="email"
+                                                placeholder="Enter Email"
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="requirements">Agency Image</label>
+                                            <input
+                                                type="file"
+                                                class="form-control"
+                                                id="requirements"
+                                                name="a_image"
+                                               
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-left: 250px;">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{m}}")</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

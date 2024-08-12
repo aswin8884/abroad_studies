@@ -1,0 +1,107 @@
+{% extends 'international_student/international_student_base.html' %}
+{% block content %}
+
+<style>
+  /* Add this to your styles.css file */
+  .meeting-item {
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    padding: 20px;
+    transition: box-shadow 0.3s;
+  }
+
+  .meeting-item:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .meeting-item .thumb {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .meeting-item .thumb img {
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .meeting-item .down-content {
+    text-align: left;
+  }
+
+  .meeting-item .down-content .avatar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .meeting-item .down-content .avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #eee;
+  }
+
+  .meeting-item .down-content .avatar h6 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+  }
+
+  .meeting-item .down-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+  }
+
+  .meeting-item .down-content p {
+    margin-bottom: 10px;
+    color: #777;
+  }
+
+  .meeting-item .down-content .date {
+    font-size: 14px;
+    color: #aaa;
+  }
+</style>
+
+<section class="upcoming-meetings" id="meetings">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading">
+          <h2>Blogs</h2>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="row">
+          {% for b in blogs %}
+          <div class="col-lg-6">
+            <div class="meeting-item">
+              <div class="thumb">
+                <a href="meeting-details.html"><img src="../static/media/{{b.image}}" alt="Blog Image"></a>
+              </div>
+              <div class="down-content">
+                <div class="avatar avatar-sm">
+                  <img src="../static/media/{{b.i_student_id.profile_picture}}" alt="{{b.i_student_id.name}}" class="avatar-img">
+                  <h6 style="text-transform: capitalize;">Posted by {{b.i_student_id.name}}</h6>
+                </div>
+                <a href="meeting-details.html"><h4 style="text-transform: capitalize;">{{b.title}}</h4></a>
+                <p>{{b.description}}</p>
+                <br>
+                <div class="date">
+                  <h6>Posted on: {{b.posted_date}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

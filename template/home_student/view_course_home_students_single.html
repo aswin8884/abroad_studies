@@ -1,0 +1,74 @@
+{% extends 'home_student/home_student_base.html' %}
+{% block content %}
+<section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Get all details About</h6>
+          <h2>{{course.course}}</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="meeting-single-item">
+                <div class="thumb">
+                  <!-- <div class="price">
+                    <span>$14.00</span>
+                  </div> -->
+                  <!-- <div class="date">
+                    <h6>Nov <span>12</span></h6>
+                  </div> -->
+                  <div style="display: flex;padding:20px;">
+                      <a href="{{course.link}}"><img src="../static/media/{{course.c_image}}" height="280px" alt=""></a>
+    
+                  </div>
+                </div>
+                <div class="down-content">
+                  <a href="{{course.link}}"><h4>{{course.course}}</h4></a>
+                  <p>{{course.level}}</p>
+                  <br>
+                  <br>
+                  <p>
+                    <h4>Details</h4><br>
+                    {{course.details}}
+                </p>
+                <br>
+                <br>
+                  <p>
+                    <h4>Requirements</h4><br>
+                    {{course.requirements}}
+                </p>
+                <br>
+                <br>
+                  <p>
+                    <h4>University</h4><br>
+                    {{course.uni_id.name}}
+                </p>
+                <br>
+                <br>
+                  <p>
+                    <h4>Application link</h4><br>
+                    <a href="{{course.application_link}}"><p>{{course.application_link}}</p></a>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="main-button-red">
+                <a href="/view_courses_home_students">Back Course List</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

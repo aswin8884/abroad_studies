@@ -1,0 +1,215 @@
+{% extends 'home_student/home_student_base.html' %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+    <style>
+/* Card Styles */
+.card {
+    
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card:before, .card:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    transition: all 0.5s;
+    transform-origin: bottom;
+}
+
+.card:before {
+    background-color: #E1BEE7;
+    transform: scaleY(1);
+}
+
+.card:after {
+    background-color: #8E24AA;
+    transform: scaleY(0);
+}
+
+.card:hover::after {
+    transform: scaleY(1);
+}
+
+/* Card Content Styles */
+.card .text-center img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.card .text-center h5 {
+    margin-top: 1rem;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.card .text-center span.bg-secondary {
+    background-color: #8E24AA !important;
+}
+
+.card .text-center p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card .social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.card .social-list li {
+    padding: 10px;
+    color: #8E24AA;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.card .social-list li:hover {
+    color: #E1BEE7;
+}
+
+.card .buttons button {
+    border: 1px solid #8E24AA !important;
+    color: #8E24AA;
+    height: 40px;
+    margin: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card .buttons button:hover {
+    background-color: #8E24AA;
+    color: #fff;
+}
+
+
+    </style>
+
+<section class="upcoming-meetings" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h2>Profile</h2>
+          </div>
+        </div>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-7">
+                <div class="card p-5 py-7">
+                    <div class="text-center">
+                        <img src="../static/media/{{student.profile_picture}}" width="150" class="rounded-circle">
+                    </div>
+                    <div class="text-center mt-3">
+                        <!-- <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span> -->
+                        <h5 class="mt-2 mb-0" style="text-transform: capitalize;">{{student.name}}</h5>
+                        <span>Student</span>
+                        <div class="px-4 mt-1">
+                            <p class="fonts">Lives in {{student.address}}</p>
+                        </div>
+                        <ul class="social-list">
+                            <li><i class="fa fa-facebook"></i></li>
+                            <li><i class="fa fa-dribbble"></i></li>
+                            <li><i class="fa fa-instagram"></i></li>
+                            <li><i class="fa fa-linkedin"></i></li>
+                            <li><i class="fa fa-google"></i></li>
+                        </ul>
+                        <div style="display: flex;margin-left: 120px;">
+                            <div class="buttons">
+                                <a href="/edit_profile_home_students?id={{student.id}}"><button class="btn btn-outline-primary px-4">Edit</button></a>
+                            </div>
+                            <div class="buttons">
+                                <a href="/move_account_to_international?id={{student.id}}"><button class="btn btn-outline-info px-4">Convert To Inernational Student Account</button></a>
+                            </div>
+                        </div>
+                  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      </div></div></section>
+
+      {% if messages %}
+{% for m in messages %}
+<script>alert("{{m}}")</script>
+{% endfor %}
+{% endif %}
+
+
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/assets/js/isotope.min.js"></script>
+    <script src="../static/assets/js/owl-carousel.js"></script>
+    <script src="../static/assets/js/lightbox.js"></script>
+    <script src="../static/assets/js/tabs.js"></script>
+    <script src="../static/assets/js/video.js"></script>
+    <script src="../static/assets/js/slick-slider.js"></script>
+    <script src="../static/assets/js/custom.js"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+            var direction = section.replace(/#/, ''),
+                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+                reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+                $('body, html').animate({
+                    scrollTop: reqSectionPos
+                }, 800);
+            } else {
+                $('body, html').scrollTop(reqSectionPos);
+            }
+        };
+
+        var checkSection = function checkSection() {
+            $('.section').each(function() {
+                var $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var currentId = $this.data('section'),
+                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                    reqLink.closest('li').addClass('active').siblings().removeClass('active');
+                }
+            });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function(e) {
+            e.preventDefault();
+            showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function() {
+            checkSection();
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'international_student/international_student_base.html' %}
+{% block content %}
+<section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Here are our university Course list</h6>
+          <h2>Lets look</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- <div class="filters">
+                <ul>
+                  <li data-filter="*"  class="active">All Meetings</li>
+                  <li data-filter=".soon">Soon</li>
+                  <li data-filter=".imp">Important</li>
+                  <li data-filter=".att">Attractive</li>
+                </ul>
+              </div> -->
+            </div>
+            <div class="col-lg-12">
+              <div class="row grid">
+                {% for c in courses %}
+                <div class="col-lg-4 templatemo-item-col all soon">
+                  <div class="meeting-item">
+                    <div class="thumb">
+                      <div class="price">
+                        <!-- <span>$14.00</span> -->
+                      </div>
+                      <a href="/view_course_home_students_single?id={{c.id}}"><img src="../static/media/{{c.c_image}}" alt=""></a>
+                    </div>
+                    <div class="down-content">
+                      <div class="date">
+                        <h6> <span> </span></h6>
+                      </div>
+                      <a href="/view_course_home_students_single?id={{c.id}}">
+                        <h4 style="margin-left: 50px;">{{c.course}}</h4></a>
+                        <p style="margin-left: 150px;">At</p>
+                      <p>{{c.uni_id.name}}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved. 
+          <br>Design: <a href="https://templatemo.com/page/1" target="_parent" title="website templates">TemplateMo</a></p>
+    </div>
+  </section>
+  {% endblock %}

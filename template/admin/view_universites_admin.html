@@ -1,0 +1,104 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+
+<style>
+  .card-header {
+    background-color: #007bff;
+    color: #fff;
+    border-bottom: 1px solid #e9ecef;
+    padding: 15px;
+  }
+  .card-title {
+    font-weight: bold;
+    margin: 0;
+  }
+  .table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  .table th {
+    background-color: #522258;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+  }
+  .table td {
+    background-color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+  }
+  .table-hover tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  .btn {
+    margin: 0 2px;
+    transition: background-color 0.3s ease;
+  }
+  .btn-success:hover {
+    background-color: #28a745;
+  }
+  .btn-danger:hover {
+    background-color: #dc3545;
+  }
+  .btn-outline-info:hover {
+    background-color: #17a2b8;
+    color: #fff;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><br><br><br><br>
+        <h4 class="card-title">Universites</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            id="basic-datatables"
+            class="display table table-striped table-hover"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <!-- <th scope="col">Description</th> -->
+                <!-- <th scope="col">Requirements</th> -->
+                <th colspan="2">Images</th>
+                <th colspan="2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in universites %}
+              <tr>
+                <td>{{ u.name }}</td>
+                <td>{{ u.location }}</td>
+                <!-- <td>{{ u.description }}</td> -->
+                <!-- <td>{{ u.requirements }}</td> -->
+                <div style="display: flex;">
+                  <td><a href="{{ u.link }}"><img src="../static/media/{{ u.image_main }}" width="150px" height="150px" alt=""></a></td>
+                  <td><a href="{{ u.link }}"><img src="../static/media/{{ u.image_sub }}" width="150px" height="150px" alt=""></a></td>
+                </div>
+                <td><a class="btn btn-secondary" href="/update_universites?id={{ u.id }}">Update</a></td>
+                <td><a class="btn btn-danger" href="/delete_universites?id={{ u.id }}">Delete</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{ m }}")</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
