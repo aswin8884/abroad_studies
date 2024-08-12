@@ -25,11 +25,8 @@ View Data: Access and view data uploaded by the admin (e.g., universities, cours
 Inquiry Management: Make inquiries to international students and send messages.
 Profile Management: View and edit their own profiles.
 
-_______________________________________________________
-| #### Admin ####                                      |
-|                                                      | 
-|  username : admin@gmail.com                          |   
-|  password : 12345                                    |  
-|                                                      |
-| NB : All the users can login after admin approvel    |
-|______________________________________________________|
+ #### Admin ####                                                                                       
+username : admin@gmail.com                             
+password : 12345                                                                                         
+NB : All the users can login after admin approvel    
+
